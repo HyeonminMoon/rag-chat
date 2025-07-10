@@ -1,14 +1,22 @@
 import { create } from 'zustand';
 import { ChatStore, Message } from '../types/chat';
-import { StateCreator } from 'zustand';
 
-export const useChatStore = create<ChatStore>((set: StateCreator<ChatStore>) => ({
+export const useChatStore = create<ChatStore>((set) => ({
     messages: [],
     isLoading: false,
     addMessage: (message: Message) =>
-        set((state: ChatStore) => ({
+        set((state) => ({
+            ...state,
             messages: [...state.messages, message],
         })),
-    setLoading: (isLoading: boolean) => set({ isLoading }),
-    clearMessages: () => set({ messages: [] }),
+    setLoading: (isLoading: boolean) =>
+        set((state) => ({
+            ...state,
+            isLoading
+        })),
+    clearMessages: () =>
+        set((state) => ({
+            ...state,
+            messages: []
+        })),
 })); 

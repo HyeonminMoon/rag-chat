@@ -5,12 +5,9 @@ export interface Message {
     sourceText?: string;
 }
 
-export interface ChatState {
+export interface ChatStore {
     messages: Message[];
     isLoading: boolean;
-}
-
-export interface ChatStore extends ChatState {
     addMessage: (message: Message) => void;
     setLoading: (isLoading: boolean) => void;
     clearMessages: () => void;
