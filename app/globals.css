@@ -1,13 +1,222 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-rgb: 255, 255, 255;
+    --primary: #10a37f;
+    --primary-hover: #0e906f;
+    --background: #f7f7f8;
+    --foreground: #2d2d2d;
+    --border: #e5e5e5;
+    --user-message: #10a37f;
+    --assistant-message: #ffffff;
 }
 
 body {
-    color: rgb(var(--foreground-rgb));
-    background: rgb(var(--background-rgb));
+    background-color: var(--background);
+    color: var(--foreground);
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.chat-header {
+    background-color: white;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.chat-header h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d2d2d;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow: hidden;
+    background-color: var(--background);
+}
+
+.messages-container {
+    height: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.message-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.user .avatar {
+    background-color: var(--primary);
+}
+
+.assistant .avatar {
+    background-color: #19c37d;
+}
+
+.message-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+.message-bubble {
+    padding: 1rem;
+    border-radius: 1rem;
+    max-width: 85%;
+    line-height: 1.5;
+}
+
+.user .message-bubble {
+    background-color: var(--primary);
+    color: white;
+    margin-left: auto;
+}
+
+.assistant .message-bubble {
+    background-color: white;
+    border: 1px solid var(--border);
+}
+
+.source-text {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.user .source-text {
+    border-top: 1px solid var(--primary-hover);
+    color: #e5e5e5;
+}
+
+.assistant .source-text {
+    border-top: 1px solid var(--border);
+    color: #666666;
+}
+
+.source-text-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.source-text-content {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    color: #666666;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.loading-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--primary);
+    border-radius: 50%;
+    animation: bounce 0.6s infinite;
+}
+
+.chat-input-container {
+    border-top: 1px solid var(--border);
+    background-color: white;
+    padding: 1rem;
+    position: sticky;
+    bottom: 0;
+}
+
+.chat-form {
+    max-width: 48rem;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.2);
+}
+
+.chat-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.send-button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: var(--primary-hover);
+}
+
+.send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
 }
